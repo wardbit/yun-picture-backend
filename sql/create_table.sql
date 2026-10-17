@@ -145,3 +145,8 @@ create table if not exists chat_history_picture
 ) comment '对话历史图片关联表' collate = utf8mb4_unicode_ci;
 ALTER TABLE chat_history
     ADD COLUMN space_id bigint null comment '空间 id（为空表示公共空间）';
+
+ALTER TABLE space
+    ADD COLUMN spaceType int default 0 not null comment '空间类型：0-私有 1-团队';
+
+CREATE INDEX idx_spaceType ON space (spaceType);
